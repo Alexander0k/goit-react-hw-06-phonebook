@@ -1,0 +1,15 @@
+.contact {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+.button {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 250ms linear;
+}

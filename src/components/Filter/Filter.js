@@ -1,26 +1,25 @@
-import styles from './Filter.module.css';
-import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
+import { setFilter } from '../../redux/FilterSlice';
 
-const Filter = ({ onChange, filter }) => {
+function Filter() {
+  const dispatch = useDispatch();
+  const filterValue = useSelector(state => state.filter);
+
+  const onFilterChange = e => {
+    dispatch(setFilter(e.currentTarget.value.toLowerCase()));
+  };
+
   return (
-    <>
-      <p>Find contacts by name</p>
+    <label>
+      Find contacts by name :
       <input
+        onChange={onFilterChange}
+        value={filterValue}
         type="text"
         name="filter"
-        value={filter}
-        pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-        title="Please enter name to find contact"
-        onChange={onChange}
-        className={styles.input}
       />
-    </>
+    </label>
   );
-};
-
-Filter.propTypes = {
-    onChange: PropTypes.func.isRequired,
-    filter: PropTypes.string.isRequired,
-};
+}
 
 export default Filter;
